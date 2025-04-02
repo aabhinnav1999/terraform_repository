@@ -1,0 +1,7 @@
+variable "instancetype" {
+    type = string
+}
+
+variable "instancename" {
+    type = string
+}

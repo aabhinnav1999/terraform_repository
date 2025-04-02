@@ -1,0 +1,31 @@
+terraform init
+
+terraform refresh
+
+terraform validate
+
+terraform fmt 			-- format
+
+terraform plan 			
+
+terraform apply
+
+terraform destroy
+
+terraform destroy -target=aws_instance.ansible-server
+
+terraform apply --auto-approve
+
+terraform plan --var-file file_name.tfvars
+
+terraform dependency two types
+implicit
+explicit
+
+variables:
+input
+output
+local
+
+terraform plan -var="any_name=any_value"
+terraform plan -var-file="file_name"

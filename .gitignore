@@ -1,0 +1,8 @@
+# folders
+.terraform/
+
+# files
+.terraform.lock.hcl
+terraform.tfstate.backup
+terraform.tfstate
+terraform.exe

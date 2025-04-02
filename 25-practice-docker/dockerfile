@@ -1,0 +1,19 @@
+# FROM nginx:1.27.0
+# RUN apt update
+# RUN apt install -y vim
+# COPY index.html /usr/share/nginx/html
+
+# FROM python:slim-bullseye
+# ENV PYTHONUNBUFFERED=1
+# WORKDIR /django_folder
+# COPY . .
+# RUN pip3 install -r requirements.txt
+# CMD [ "python3","manage.py","runserver","0.0.0.0:8000" ]
+
+FROM node:22
+WORKDIR /app
+COPY package*.json .
+RUN npm ci
+COPY index.js index.js
+EXPOSE 3000
+CMD [ "node", "index.js" ]
