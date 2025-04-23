@@ -35,3 +35,7 @@ output "my-server-public-dns" {
     value = aws_instance.my-server.public_dns
 }
 
+output "public-ip" {
+    value = aws_instance.my-server.public_ip
+}
+
