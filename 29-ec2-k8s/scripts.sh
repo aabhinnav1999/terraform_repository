@@ -65,3 +65,9 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/tigera-operator.yaml
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/custom-resources.yaml
+
+### Install Helm ###
+sudo snap install helm --classic
+
+### Install kubectx and kubens for easier context and namespace switching ###
+sudo apt-get install kubectx -y

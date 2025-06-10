@@ -9,6 +9,7 @@ resource "aws_instance" "control_plane" {
     instance_type = "t3.medium"
     key_name = "eu-west-1-kp"
     monitoring = true
+    subnet_id = "subnet-027995a49277edbed"
 
     tags = {
       "Name" = "control-plane" 
@@ -34,7 +35,7 @@ resource "aws_instance" "control_plane" {
   }
 
   root_block_device {
-    volume_size = 30
+    volume_size = 20
   }
 
 }
@@ -50,11 +51,12 @@ resource "aws_instance" "worker_node" {
   for_each = {
         "1" = "subnet-0e2604974ab1b723a"
         "2" = "subnet-08fd5ca933492eef7"
+        "3" = "subnet-027995a49277edbed"
     }
 
   ami = "ami-0df368112825f8d8f"
   vpc_security_group_ids = ["sg-012e6ce078d8855b3"]
-  instance_type = "t3.small"
+  instance_type = "t3.micro"
   key_name = "eu-west-1-kp"
   subnet_id = each.value
   monitoring = true
@@ -66,6 +68,7 @@ resource "aws_instance" "worker_node" {
   user_data = <<-EOF
               #!/bin/bash
               echo "Running setup on worker node ${each.key}"
+              hostnamectl set-hostname "worker-node-${each.key}"
             EOF
 
   connection {

@@ -40,8 +40,6 @@ sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/conf
 sudo systemctl enable containerd
 sudo systemctl restart containerd
 
-# sudo mkdir -p -m 755 /etc/apt/keyrings
-
 curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 
 echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
@@ -49,6 +47,3 @@ echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.
 sudo apt-get update
 sudo apt-get install kubelet kubeadm kubectl -y
 sudo apt-mark hold kubelet kubeadm kubectl
-
-# sudo kubeadm join 172.31.34.105:6443 --token g9udra.61jxbrzcb2rk46dq \
-#         --discovery-token-ca-cert-hash sha256:8b2696c4dac42fb984130cdae69be2e77516e29e23ef72b6ad5b80cc4581e695
