@@ -34,7 +34,7 @@ resource "aws_instance" "my-server" {
     monitoring = true
 
     tags = {
-      "Name" = "my-server" 
+      "Name" = "my-server-new" 
     }
 
     # tags = {
