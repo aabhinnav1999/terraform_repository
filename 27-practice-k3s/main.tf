@@ -6,7 +6,7 @@ resource "aws_instance" "k3s-master" {
     
     ami = "ami-03fd334507439f4d1"
     instance_type = "t3.medium"
-    key_name = "eu-west-1-kp"
+    key_name = "k3s-keypair"
     vpc_security_group_ids = [ "sg-012e6ce078d8855b3" ]
     subnet_id = "subnet-027995a49277edbed"
     monitoring = true
@@ -37,7 +37,7 @@ resource "aws_instance" "k3s-worker" {
 
     ami = "ami-03fd334507439f4d1"
     instance_type = "t3.small"
-    key_name = "eu-west-1-kp"
+    key_name = "k3s-keypair"
     vpc_security_group_ids = [ "sg-012e6ce078d8855b3" ]
     monitoring = true
 

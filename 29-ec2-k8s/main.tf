@@ -1,15 +1,23 @@
 provider "aws" {
-    region = "eu-west-1"
+    region = "us-east-1"
 }
 
 resource "aws_instance" "control_plane" {
 
-    ami = "ami-0df368112825f8d8f"
-    vpc_security_group_ids = [ "sg-012e6ce078d8855b3" ]
+    # ami = "ami-0df368112825f8d8f"
+    # vpc_security_group_ids = [ "sg-012e6ce078d8855b3" ]
+    # key_name = "eu-west-1-kp"
+    # subnet_id = "subnet-027995a49277edbed"
+
+    # learner lab
+    ami = "ami-020cba7c55df1f615"
+    subnet_id = "subnet-070af5cf7f0f43b88"
+    key_name = "ric-keypair"
+    vpc_security_group_ids = ["sg-07ab651faf42f7e14"]
+
     instance_type = "t3.medium"
-    key_name = "eu-west-1-kp"
     monitoring = true
-    subnet_id = "subnet-027995a49277edbed"
+
 
     tags = {
       "Name" = "control-plane" 
@@ -18,7 +26,8 @@ resource "aws_instance" "control_plane" {
   connection {
     type        = "ssh"
     user        = "ubuntu"
-    private_key = file("C:/Users/abhin/Downloads/eu-west-1-kp.pem")
+    # private_key = file("C:/Users/abhin/Downloads/eu-west-1-kp.pem")
+    private_key = file("C:/Users/abhin/Downloads/ric-keypair.pem")
     host        = self.public_ip
   }
 
@@ -48,16 +57,31 @@ output "control_plane-public-ip" {
 
 resource "aws_instance" "worker_node" {
   
-  for_each = {
-        "1" = "subnet-0e2604974ab1b723a"
-        "2" = "subnet-08fd5ca933492eef7"
-        "3" = "subnet-027995a49277edbed"
-    }
+  # for_each = {
+  #       "1" = "subnet-0e2604974ab1b723a"
+  #       "2" = "subnet-08fd5ca933492eef7"
+  #       "3" = "subnet-027995a49277edbed"
+  #   }
 
-  ami = "ami-0df368112825f8d8f"
-  vpc_security_group_ids = ["sg-012e6ce078d8855b3"]
+  # learner lab
+  for_each = {
+    "1" = "subnet-0c3f47a25771ed0c4"
+    "2" = "subnet-024f41cdeb7096c0e"
+    "3" = "subnet-0fb018345585d7a75"
+  }
+
+
+
+  # ami = "ami-0df368112825f8d8f"
+  # key_name = "eu-west-1-kp"
+  # vpc_security_group_ids = ["sg-012e6ce078d8855b3"]
+
+
+  # learner lab
+  ami = "ami-020cba7c55df1f615"
+  key_name = "ric-keypair"
+  vpc_security_group_ids = ["sg-07ab651faf42f7e14"]
   instance_type = "t3.micro"
-  key_name = "eu-west-1-kp"
   subnet_id = each.value
   monitoring = true
 
@@ -74,7 +98,8 @@ resource "aws_instance" "worker_node" {
   connection {
     type        = "ssh"
     user        = "ubuntu"
-    private_key = file("C:/Users/abhin/Downloads/eu-west-1-kp.pem")
+    # private_key = file("C:/Users/abhin/Downloads/eu-west-1-kp.pem")
+    private_key = file("C:/Users/abhin/Downloads/ric-keypair.pem")
     host        = self.public_ip
   }
 
