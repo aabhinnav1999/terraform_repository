@@ -1,7 +1,6 @@
 variable "ami_id" {
     description = "The AMI ID for the EC2 instance"
     type        = string
-    default     = "ami-0bc691261a82b32bc"
 }
 
 variable "instance_type" {
@@ -13,7 +12,6 @@ variable "instance_type" {
 variable "Name" {
     description = "The Name tag for the EC2 instance"
     type        = string
-    default     = "ExampleInstance"
 }
 
 variable "subnet_id" {

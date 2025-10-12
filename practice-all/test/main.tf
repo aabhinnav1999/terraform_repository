@@ -1,5 +1,5 @@
 module "ec2_instance" {
-    source = "../modules/ec2_module"
+    source =  "git::https://github.com/aabhinnav1999/terraform_repository.git//practice-all/modules/ec2_module"
     ami_id = "ami-0bc691261a82b32bc"
     instance_type = "t2.micro"
     Name = "DemoInstance"
