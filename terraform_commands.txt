@@ -12,6 +12,8 @@ terraform apply
 
 terraform destroy
 
+terraform show
+
 terraform destroy -target=aws_instance.ansible-server
 
 terraform apply --auto-approve
@@ -29,3 +31,6 @@ local
 
 terraform plan -var="any_name=any_value"
 terraform plan -var-file="file_name"
+
+terraform init -reconfigure
+terraform init -migrate-state
