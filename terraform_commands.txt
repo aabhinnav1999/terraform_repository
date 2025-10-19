@@ -20,6 +20,9 @@ terraform apply --auto-approve
 
 terraform plan --var-file file_name.tfvars
 
+terraform plan -var="any_name=any_value"
+terraform plan -var-file="file_name"
+
 terraform dependency two types
 implicit
 explicit
@@ -29,8 +32,10 @@ input
 output
 local
 
-terraform plan -var="any_name=any_value"
-terraform plan -var-file="file_name"
-
 terraform init -reconfigure
 terraform init -migrate-state
+
+terraform workspaces:
+terraform workspace new any_name
+terraform workspace select any_name
+terraform workspace show
