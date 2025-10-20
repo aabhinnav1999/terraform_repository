@@ -39,3 +39,9 @@ terraform workspaces:
 terraform workspace new any_name
 terraform workspace select any_name
 terraform workspace show
+
+terraform plan -generate-config-out=any_name.tf
+terraform import resource.resource_name instance_id
+
+terraform drift:
+	If some one manually changed any settings or attributes for any resource, then detecting that change is called drift detection

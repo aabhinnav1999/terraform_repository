@@ -3,11 +3,20 @@ provider "aws" {
 }
 
 resource "aws_instance" "example" {
+
+  # eu-west-1
   ami           = "ami-0bc691261a82b32bc"
-  instance_type = "t2.micro"
+  instance_type = "t3.medium"
   key_name = "eu-west-1-kp"
   subnet_id = "subnet-027995a49277edbed"
   vpc_security_group_ids = ["sg-0cb9fa18187a0b901"]
+
+  # us-east-1 
+  # ami = "ami-0360c520857e3138f"
+  # instance_type = "t2.micro"
+  # key_name = null
+  # subnet_id = "subnet-046bbbd58dad9e8f8"
+  # vpc_security_group_ids = ["sg-05a37e2fb8b2a843b"]
 
   tags = {
     Name = "demo-tf-server"
