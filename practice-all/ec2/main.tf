@@ -6,7 +6,7 @@ resource "aws_instance" "example" {
 
   # eu-west-1
   ami           = "ami-0bc691261a82b32bc"
-  instance_type = "t3.medium"
+  instance_type = "t3.small"
   key_name = "eu-west-1-kp"
   subnet_id = "subnet-027995a49277edbed"
   vpc_security_group_ids = ["sg-0cb9fa18187a0b901"]
