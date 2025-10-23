@@ -6,7 +6,7 @@ resource "aws_instance" "example" {
 
   # eu-west-1
   ami           = "ami-0bc691261a82b32bc"
-  instance_type = "t3.small"
+  instance_type = "t3.micro"
   key_name = "eu-west-1-kp"
   subnet_id = "subnet-027995a49277edbed"
   vpc_security_group_ids = ["sg-0cb9fa18187a0b901"]
@@ -17,6 +17,11 @@ resource "aws_instance" "example" {
   # key_name = null
   # subnet_id = "subnet-046bbbd58dad9e8f8"
   # vpc_security_group_ids = ["sg-05a37e2fb8b2a843b"]
+
+  root_block_device {
+    volume_size = 10
+    volume_type = "gp3" 
+  }
 
   tags = {
     Name = "demo-tf-server"
@@ -50,3 +55,8 @@ resource "aws_instance" "example" {
 # output "random_subnet_id" {
 #   value = random_shuffle.subnet.result[0]
 # }
+
+
+output "ip-address" {
+	value = aws_instance.example.public_ip
+}
